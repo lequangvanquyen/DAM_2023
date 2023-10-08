@@ -25,6 +25,7 @@
                 <a href="index.php?pg=lienhe">LIÊN HỆ</a> -->
                 <a href="index.php?pg=dangky">DANG KY</a>
                 <a href="index.php?pg=dangnhap">DANG NHAP</a>
+                <!-- 42:12 -->
             </div>
         </div>
     </div>
