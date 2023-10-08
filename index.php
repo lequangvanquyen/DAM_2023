@@ -79,6 +79,12 @@ if (!isset($_GET['pg'])) {
                 include "view/viewcart.php";
             }
             break;
+        case 'dangky':
+            include "view/dangky.php";
+            break;
+        case 'dangnhap':
+            include "view/dangnhap.php";
+            break;
 
         default:
             include "view/home.php";

@@ -19,10 +19,12 @@
             </div>
             <div class="menu col8">
                 <a href="index.php">TRANG CHỦ</a>
-                <a href="index.php?pg=gioithieu">GIỚI THIỆU</a>
+                <!-- <a href="index.php?pg=gioithieu">GIỚI THIỆU</a> -->
                 <a href="index.php?pg=sanpham">SẢN PHẨM</a>
-                <a href="index.php?pg=dichvu">DỊCH VỤ</a>
-                <a href="index.php?pg=lienhe">LIÊN HỆ</a>
+                <!-- <a href="index.php?pg=dichvu">DỊCH VỤ</a>
+                <a href="index.php?pg=lienhe">LIÊN HỆ</a> -->
+                <a href="index.php?pg=dangky">DANG KY</a>
+                <a href="index.php?pg=dangnhap">DANG NHAP</a>
             </div>
         </div>
     </div>
