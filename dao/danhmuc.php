@@ -41,22 +41,25 @@ require_once 'pdo.php';
  * @return array mảng loại truy vấn được
  * @throws PDOException lỗi truy vấn
  */
-function danhmuc_all()
-{
+function danhmuc_all(){
     $sql = "SELECT * FROM danhmuc ORDER BY stt DESC";
     return pdo_query($sql);
 }
-
-function showdm($dsdm)
-{
-    $html_dm = '';
+function showdm($dsdm){
+    $html_dm='';
     foreach ($dsdm as $dm) {
         extract($dm);
-        $link = 'index.php?pg=sanpham&iddm=' . $id;
-        $html_dm .= '<a href="' . $link . '">' . $name . '</a>';
+        $link='index.php?pg=sanpham&iddm='.$id;
+        $html_dm.='<a href="'.$link.'">'.$name.'</a>';
     }
     return $html_dm;
 }
+function get_name_dm($id){
+    $sql = "SELECT name FROM danhmuc WHERE id=".$id;
+    $kq=pdo_query_one($sql);
+    return $kq["name"];
+}
+
 // /**
 //  * Truy vấn một loại theo mã
 //  * @param int $ma_danhmuc là mã loại cần truy vấn

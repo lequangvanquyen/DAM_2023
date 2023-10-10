@@ -1,10 +1,10 @@
 <?php
 $html_dm = showdm($dsdm);
+$html_sp_lienquan = showsp($dssp_lienquan);
 extract($spchitiet);
-$htnl_sp_lienquan = showsp($splienquan);
 ?>
 <div class="containerfull">
-    <div class="bgbanner">SẢN PHẨM CHI TIẾT</div>
+    <div class="bgbanner">SẢN PHẨM</div>
 </div>
 
 <section class="containerfull">
@@ -21,13 +21,14 @@ $htnl_sp_lienquan = showsp($splienquan);
                 </div>
                 <div class="col6 textchitiet">
                     <h2><?= $name ?></h2>
-                    <p><?= $price ?> VND</p>
+                    <p><?= $price ?> đ</p>
+
 
                     <form action="index.php?pg=addcart" method="post">
                         <input type="hidden" name="name" value="<?= $name ?>">
-                        <input type="hidden" name="img" value="' <?= $img ?>">
+                        <input type="hidden" name="img" value="<?= $img ?>">
                         <input type="hidden" name="price" value="<?= $price ?>">
-                        <input type="number" value="1" name="soluong" id="" min="1" max="10">
+                        <input type="number" name="soluong" id="" min="1" value="1" max="10">
                         <button type="submit" name="addcart">Đặt hàng</button>
                     </form>
                 </div>
@@ -35,8 +36,12 @@ $htnl_sp_lienquan = showsp($splienquan);
             </div>
             <hr>
             <h1>SẢN PHẨM LIÊN QUAN</h1>
-            <?= $htnl_sp_lienquan ?>
+            <div class="containerfull mr30">
+                <?= $html_sp_lienquan; ?>
+
+            </div>
         </div>
-    </div>
+
+
     </div>
 </section>

@@ -212,8 +212,9 @@ a:hover {
 .menutrai a:hover {
     color: #000000;
 }
-.bgbanner{
-    float:left;
+
+.bgbanner {
+    float: left;
     width: 100%;
     padding: 80px 0px;
     text-align: center;
@@ -221,74 +222,96 @@ a:hover {
     font-size: 14pt;
     color: #FFFFFF;
 }
-.col2{
+
+.col2 {
     width: 20%;
     float: left;
 }
-.col8{
+
+.col8 {
     float: left;
     width: 80%;
     text-align: right;
 }
-.col6{
+
+.col6 {
     float: left;
     width: 50%;
 }
-.col9{
+
+.col9 {
     float: left;
     width: 70%;
 }
-.col3{
+
+.col3 {
     float: left;
     width: 30%;
 }
-.menu{
+
+.menu {
     height: 40px;
     line-height: 40px;
 }
-.menu a{
+
+.menu a {
     margin: 0 20px;
 }
-.logo img{
+
+.logo img {
     height: 40px !important;
     width: 100px !important;
 }
-.imgchitiet img{
+
+.imgchitiet img {
     width: 90%;
 }
-hr{
+
+hr {
     margin-bottom: 30px;
     border-top: 1px #CCC dotted;
 }
-.viewcart table{
+
+.viewcart table {
     width: 95%;
     border-collapse: collapse;
 }
-.viewcart table tr th{
+
+.viewcart table tr th {
     background-color: #CCC;
-    
 }
-th,td{
+
+th,
+td {
     padding: 10px;
     border: 1px #666666 solid;
     text-align: left;
 }
 
+h1 span {
+    color: #993300;
+}
+
+
 /* FORM */
-input[type=text], select, textarea {
+
+input[type=text],
+input[type=password],
+select,
+textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
-  }
-  
-  label {
+}
+
+label {
     padding: 12px 12px 12px 0;
     display: inline-block;
-  }
-  
-  input[type=submit] {
+}
+
+input[type=submit] {
     background-color: #04AA6D;
     color: white;
     padding: 12px 20px;
@@ -296,41 +319,61 @@ input[type=text], select, textarea {
     border-radius: 4px;
     cursor: pointer;
     float: right;
-  }
-  
-  input[type=submit]:hover {
+}
+
+input[type=submit]:hover {
     background-color: #45a049;
-  }
-  
-  .container {
+}
+
+/* .container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-  }
-  
-  .col-25 {
+} */
+
+.col-25 {
     float: left;
     width: 25%;
     margin-top: 6px;
-  }
-  
-  .col-75 {
+}
+
+.col-75 {
     float: left;
     width: 75%;
     margin-top: 6px;
-  }
-  
-  /* Clear floats after the columns */
-  .row::after {
+}
+
+
+/* Clear floats after the columns */
+
+.row::after {
     content: "";
     display: table;
     clear: both;
-  }
-  
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
+}
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+@media screen and (max-width: 600px) {
+    .col-25,
+    .col-75,
+    input[type=submit] {
+        width: 100%;
+        margin-top: 0;
     }
-  }
+}
+
+.ttdathang{
+    float: left;
+    width: 90%;
+    margin-bottom: 30px;
+}
+.boxcart{
+    border:1px #ccc solid;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.bggray{
+    background-color: #EEE;
+}

@@ -23,64 +23,81 @@
         </div>
     </div>
     <div class="containerfull">
-        <div class="bgbanner">SẢN PHẨM</div>
+        <div class="bgbanner">ĐƠN HÀNG</div>
     </div>
 
     <section class="containerfull">
         <div class="container">
-            <div class="boxleft mr2pt menutrai">
-                <h1>DANH MỤC</h1><br><br>
-                <a href="#">Cà phê</a>
-                <a href="#">Trái cây</a>
-                <a href="#">Trà</a>
-                <a href="#">Bánh</a>
-            </div>
-            <div class="boxright">
-                <h1>SẢN PHẨM</h1><br>
-                <div class="containerfull mr30">
-                    <div class="box25 mr15 mb">
-                        <div class="best"></div>
-                        <img src="images/sp1.webp" alt="">
-                        <span class="price">$1000</span>
-                        <button>Đặt hàng</button>
-                    </div>
-                    <div class="box25 mr15 mb">
-                        <img src="images/sp2.webp" alt="">
-                        <span class="price">$1000</span>
-                        <button>Đặt hàng</button>
-                    </div>
-                    <div class="box25 mr15 mb">
-                        <img src="images/sp3.webp" alt="">
-                        <span class="price">$1000</span>
-                        <button>Đặt hàng</button>
-                    </div>
-                    <div class="box25 mr15 mb">
-                        <img src="images/sp4.webp" alt="">
-                        <span class="price">$1000</span>
-                        <button>Đặt hàng</button>
-                    </div>
-                    <div class="box25 mr15 mb">
-                        <img src="images/sp5.jpg" alt="">
-                        <span class="price">$1000</span>
-                        <button>Đặt hàng</button>
-                    </div>
-                    <div class="box25 mr15 mb">
-                        <img src="images/sp6.webp" alt="">
-                        <span class="price">$1000</span>
-                        <button>Đặt hàng</button>
-                    </div>
-                    <div class="box25 mr15 mb">
-                        <img src="images/sp7.webp" alt="">
-                        <span class="price">$1000</span>
-                        <button>Đặt hàng</button>
-                    </div>
-                    <div class="box25 mr15 mb">
-                        <img src="images/sp8.webp" alt="">
-                        <span class="price">$1000</span>
-                        <button>Đặt hàng</button>
-                    </div>
+            <div class="col9 viewcart">
+                <div class="ttdathang">
+                    <h2>Thông tin người đặt hàng</h2>
+                  
+                      <label for="hoten"><b>Họ và tên</b></label>
+                      <input type="text" placeholder="Nhập họ tên đầy đủ" name="hoten" id="hoten" required>
+                  
+                      <label for="diachi"><b>Địa chỉ</b></label>
+                      <input type="text" placeholder="Nhập địa chỉ" name="diachi" id="diachi" required>
+                  
+                      <label for="email"><b>Email</b></label>
+                      <input type="text" placeholder="Nhập email" name="email" id="email" required>
+
+                      <label for="dienthoai"><b>Điện thoại</b></label>
+                      <input type="text" placeholder="Nhập điện thoại" name="dienthoai" id="dienthoai" required>
+                </div>
+                <div class="ttdathang">
+                    <a onclick="showttnhanhang()" style="cursor: pointer;">
+                    &rArr; Thay đổi thông tin nhận hàng
+                    </a>
+                </div>
+                <div class="ttdathang" id="ttnhanhang">
+                    <h2>Thông tin người nhận hàng</h2>
+                  
+                      <label for="hoten"><b>Họ và tên</b></label>
+                      <input type="text" placeholder="Nhập họ tên đầy đủ" name="hoten" id="hoten" required>
+                  
+                      <label for="diachi"><b>Địa chỉ</b></label>
+                      <input type="text" placeholder="Nhập địa chỉ" name="diachi" id="diachi" required>
+                  
+                      <label for="dienthoai"><b>Điện thoại</b></label>
+                      <input type="text" placeholder="Nhập điện thoại" name="dienthoai" id="dienthoai" required>
+                </div>
+                      
+                  
+                    
+        </div>
+        <div class="col3">
+            <h2>ĐƠN HÀNG</h2>
+            <div class="total">
+                <div class="boxcart">
+                <li>Sản phẩm 1 x 2</li>
+                <li>Sản phẩm 2 x 3</li>
+                <li>Sản phẩm 3 x 4</li>
+                
+                <h3>Tổng: 1000000</h3>
                 </div>
             </div>
+            
+            <div class="coupon">
+                <div class="boxcart">
+                <h3>Vouche: </h3>
+                </div>
+            </div>
+            <div class="pttt">
+                <div class="boxcart">
+                <h3>Phương thức thanh toán: </h3>
+                <input type="radio" name="cod" id="" checked> Tiền mặt<br>
+                <input type="radio" name="vidienthu" id=""> Ví điện tử<br>
+                <input type="radio" name="chuyenkhoan" id=""> Chuyển khoản<br>
+                <input type="radio" name="thanhtoanonline" id=""> Thanh toán online<br>
+                </div>
+            </div>
+            <div class="total">
+                <div class="boxcart bggray">
+                    <h3>Tổng thanh toán: 1000000</h3>
+                </div>
+            </div>
+            <button>Thanh toán</button>
+        </div>
 
 
         </div>
@@ -92,6 +109,20 @@
     <footer class="containerfull padd50">
         Copyright&copy;2023. MSSV + Tên SV
     </footer>
+
+    <script>
+        var ttnhanhang=document.getElementById("ttnhanhang");
+        ttnhanhang.style.display="none";
+        function showttnhanhang(){
+            if(ttnhanhang.style.display=="none"){
+                ttnhanhang.style.display="block";
+            }else{
+                ttnhanhang.style.display="none";
+            }
+        }
+        
+
+    </script>
 
 </body>
 

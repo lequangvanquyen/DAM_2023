@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 08, 2023 at 06:54 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 10, 2023 lúc 03:02 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wd18331`
+-- Cơ sở dữ liệu: `dam_2023`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bill`
+-- Cấu trúc bảng cho bảng `bill`
 --
 
 CREATE TABLE `bill` (
@@ -34,28 +34,28 @@ CREATE TABLE `bill` (
   `nguoidat_ten` varchar(50) NOT NULL,
   `nguoidat_email` varchar(50) NOT NULL,
   `nguoidat_tel` varchar(20) NOT NULL,
-  `nguoidat_diachi` varchar(100) DEFAULT NULL,
+  `nguoidat_diachi` varchar(100) NOT NULL,
   `nguoinhan_ten` varchar(50) DEFAULT NULL,
   `nguoinhan_diachi` varchar(100) DEFAULT NULL,
-  `nguoinhan_tel` int(20) DEFAULT NULL,
+  `nguoinhan_tel` varchar(20) DEFAULT NULL,
   `total` int(9) NOT NULL,
-  `ship` int(3) NOT NULL DEFAULT 0,
+  `ship` int(6) NOT NULL DEFAULT 0,
   `voucher` int(6) NOT NULL DEFAULT 0,
   `tongthanhtoan` int(9) NOT NULL,
-  `pttt` tinyint(1) NOT NULL COMMENT '0: COD; 1: CK; 2: vi dien tu; '
+  `pttt` tinyint(1) NOT NULL COMMENT '0: COD; 1: ck; 2: ví điện tử'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Cấu trúc bảng cho bảng `cart`
 --
 
 CREATE TABLE `cart` (
   `id` int(6) NOT NULL,
   `idpro` int(6) NOT NULL,
   `price` int(6) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `img` varchar(200) NOT NULL,
   `soluong` int(3) NOT NULL,
   `thanhtien` int(6) NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhmuc`
+-- Cấu trúc bảng cho bảng `danhmuc`
 --
 
 CREATE TABLE `danhmuc` (
@@ -76,7 +76,7 @@ CREATE TABLE `danhmuc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `danhmuc`
+-- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
 INSERT INTO `danhmuc` (`id`, `name`, `home`, `stt`) VALUES
@@ -87,7 +87,7 @@ INSERT INTO `danhmuc` (`id`, `name`, `home`, `stt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sanpham`
+-- Cấu trúc bảng cho bảng `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -101,114 +101,126 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `sanpham`
+-- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
 INSERT INTO `sanpham` (`id`, `name`, `img`, `price`, `view`, `bestseller`, `iddm`) VALUES
-(1, 'Sản phẩm 1', 'sp1.webp', 100, 66, 1, 1),
-(2, 'Sản phẩm 2', 'sp2.webp', 200, 235, 1, 1),
-(3, 'Sản phẩm 3', 'sp3.webp', 300, 33, 0, 3),
-(4, 'Sản phẩm 4', 'sp4.webp', 400, 44, 1, 3);
+(1, 'Bánh mì ', 'sp1.webp', 12000, 0, 1, 2),
+(2, 'Bạc xỉu đá', 'sp2.webp', 180000, 235, 1, 3),
+(3, 'Bánh Ngọt', 'sp3.webp', 10000, 33, 0, 2),
+(4, 'Cà phê đen', 'sp4.webp', 12000, 44, 1, 3),
+(5, 'Cà phê đen đá', 'sp5.jpg', 15000, 0, 0, 1),
+(7, 'Cà phê sữa đá', 'sp6.webp', 16000, 100, 0, 3),
+(8, 'Lâu lắc', 'sp7.webp', 25000, 0, 0, 3),
+(9, 'Cà Phê sữa pha máy', 'sp8.webp', 25000, 0, 0, 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `user`
 --
 
 CREATE TABLE `user` (
   `id` int(6) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `ten` varchar(50) DEFAULT NULL,
   `diachi` varchar(100) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
-  `dienthoai` int(20) DEFAULT NULL,
-  `role` tinyint(1) DEFAULT 0
+  `dienthoai` varchar(20) DEFAULT NULL,
+  `role` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Indexes for dumped tables
+-- Đang đổ dữ liệu cho bảng `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `ten`, `diachi`, `email`, `dienthoai`, `role`) VALUES
+(1, 'lequangvanquyen', 'vanquyenst1', 'Văn Quyến', 'Liên Chiểu, Đà Nẵng', 'lequangvanquyen@gmail.com', '012345678', 1),
+(6, 'haha', '123', 'haha', 'hihi', 'haha@gmail.com', '0123456789', 0);
+
+--
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `bill`
+-- Chỉ mục cho bảng `bill`
 --
 ALTER TABLE `bill`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_bill_user` (`iduser`);
 
 --
--- Indexes for table `cart`
+-- Chỉ mục cho bảng `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `danhmuc`
+-- Chỉ mục cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sanpham`
+-- Chỉ mục cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_sanpham_dm` (`iddm`);
 
 --
--- Indexes for table `user`
+-- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `bill`
+-- AUTO_INCREMENT cho bảng `bill`
 --
 ALTER TABLE `bill`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `cart`
+-- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `danhmuc`
+-- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `sanpham`
+-- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `bill`
+-- Các ràng buộc cho bảng `bill`
 --
 ALTER TABLE `bill`
   ADD CONSTRAINT `fk_bill_user` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
 
 --
--- Constraints for table `sanpham`
+-- Các ràng buộc cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `fk_sanpham_dm` FOREIGN KEY (`iddm`) REFERENCES `danhmuc` (`id`);

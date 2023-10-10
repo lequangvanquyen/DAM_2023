@@ -4,6 +4,7 @@ $html_cart = viewcart();
 <div class="containerfull">
     <div class="bgbanner">GIỎ HÀNG</div>
 </div>
+
 <section class="containerfull">
     <div class="container">
         <div class="col9 viewcart">
@@ -18,12 +19,9 @@ $html_cart = viewcart();
                     <th>Thành tiền</th>
                     <th>Thao tác</th>
                 </tr>
-
-                <?= $html_cart ?>
-
+                <?= $html_cart; ?>
             </table>
-            <br>
-            <a href="index.php?pg=viewcart&del=1">Xóa Đơn Hàng</a>
+            <a href="index.php?pg=viewcart&del=1">Xóa rỗng đơn hàng</a>
         </div>
         <div class="col3">
             <h2>ĐƠN HÀNG</h2>
@@ -40,7 +38,9 @@ $html_cart = viewcart();
             <div class="total">
                 <h3>Tổng thanh toán: <?= $thanhtoan ?></h3>
             </div>
-            <button>Thanh toán</button>
+            <button>
+                Tiếp tục đặt hàng
+            </button>
         </div>
 
 

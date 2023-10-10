@@ -2,7 +2,7 @@
 
 ?>
 <div class="containerfull">
-   <div class="bgbanner">ĐĂNG KÝ THÀNH VIÊN</div>
+   <div class="bgbanner">ĐĂNG NHẬP</div>
 </div>
 
 <section class="containerfull">
@@ -14,9 +14,18 @@
          <a href="#">Thoát hệ thống</a>
       </div>
       <div class="boxright">
-         <h1>ĐĂNG KÝ</h1><br>
+         <h1>ĐĂNG NHẬP</h1><br>
          <div class="containerfull mr30">
-            <form action="index.php?pg=adduser" method="post">
+            <h2 style="color:red">
+               <?php
+               if (isset($_SESSION['tb_dangnhap']) && ($_SESSION['tb_dangnhap'] != "")) {
+                  echo $_SESSION['tb_dangnhap'];
+                  unset($_SESSION['tb_dangnhap']);
+               }
+
+               ?>
+            </h2>
+            <form action="index.php?pg=login" method="post">
                <div class="row">
                   <div class="col-25">
                      <label for="username">Tên đăng nhập</label>
@@ -33,29 +42,13 @@
                      <input type="password" id="password" name="password" placeholder="Nhập mật khẩu..">
                   </div>
                </div>
-               <div class="row">
-                  <div class="col-25">
-                     <label for="repassword">Nhập lại mật khẩu</label>
-                  </div>
-                  <div class="col-75">
-                     <input type="password" id="repassword" name="repassword" placeholder="Nhập lại mật khẩu..">
-                  </div>
-               </div>
 
-               <div class="row">
-                  <div class="col-25">
-                     <label for="email">Email</label>
-                  </div>
-                  <div class="col-75">
-                     <input type="text" id="email" name="email" placeholder="Nhập email..">
-                  </div>
-               </div>
 
 
                <br>
                <div class="row">
 
-                  <input type="submit" name="dangky" value="Đăng ký">
+                  <input type="submit" name="dangnhap" value="Đăng nhập">
                </div>
             </form>
 

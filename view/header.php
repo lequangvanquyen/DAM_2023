@@ -1,3 +1,14 @@
+<?php
+if (isset($_SESSION['s_user']) && (count($_SESSION['s_user']) > 0)) {
+    extract($_SESSION['s_user']);
+    $html_account = '<a href="index.php?pg=myaccount">' . $username . '</a>
+        <a href="index.php?pg=logout">Thoát</a>';
+} else {
+    $html_account = '<a href="index.php?pg=dangky">ĐĂNG KÝ</a>
+        <a href="index.php?pg=dangnhap">ĐĂNG NHẬP</a>';
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,14 +29,23 @@
                 </a>
             </div>
             <div class="menu col8">
-                <a href="index.php">TRANG CHỦ</a>
-                <!-- <a href="index.php?pg=gioithieu">GIỚI THIỆU</a> -->
-                <a href="index.php?pg=sanpham">SẢN PHẨM</a>
-                <!-- <a href="index.php?pg=dichvu">DỊCH VỤ</a>
-                <a href="index.php?pg=lienhe">LIÊN HỆ</a> -->
-                <a href="index.php?pg=dangky">DANG KY</a>
-                <a href="index.php?pg=dangnhap">DANG NHAP</a>
-                <!-- 42:12 -->
+                <!-- <div class="col2">
+                    <form action="index.php?pg=sanpham" method="post">
+                        <input type="text" name="kyw" id="" placeholder="Nhập từ khóa tìm kiếm theo tên">
+                        <input type="submit" name="timkiem" value="Tìm kiếm">
+                    </form>
+                </div> -->
+                <div class="col9">
+                    <a href="index.php">TRANG CHỦ</a>
+                    <!-- <a href="index.php?pg=gioithieu">GIỚI THIỆU</a> -->
+                    <a href="index.php?pg=sanpham">SẢN PHẨM</a>
+                    <!-- <a href="index.php?pg=dichvu">DỊCH VỤ</a>
+                    <a href="index.php?pg=lienhe">LIÊN HỆ</a> -->
+
+                    <?= $html_account; ?>
+                </div>
+
+
             </div>
         </div>
     </div>

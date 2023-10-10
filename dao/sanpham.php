@@ -39,26 +39,36 @@ function get_dssp_view($limi)
     return pdo_query($sql);
 }
 
-function get_dssp_lienquan($iddm, $id, $limi)
-{
-    $sql = "SELECT * FROM sanpham WHERE iddm=? AND id<>? ORDER BY view DESC limit " . $limi;
-    return pdo_query($sql, $iddm, $id);
-}
-
-function get_dssp($iddm, $limi)
+function get_dssp($kyw, $iddm, $limi)
 {
     $sql = "SELECT * FROM sanpham WHERE 1";
     if ($iddm > 0) {
         $sql .= " AND iddm=" . $iddm;
     }
+    if ($kyw != "") {
+        $sql .= " AND name like '%" . $kyw . "%'";
+    }
+
     $sql .= " ORDER BY id DESC limit " . $limi;
     return pdo_query($sql);
 }
 
-function get_sp_by_id($id)
+function get_sanphamchitiet($id)
 {
     $sql = "SELECT * FROM sanpham WHERE id=?";
     return pdo_query_one($sql, $id);
+}
+
+function get_dssp_lienquan($iddm, $id, $limi)
+{
+    $sql = "SELECT * FROM sanpham WHERE iddm=? AND id<>? ORDER BY id DESC limit " . $limi;
+    return pdo_query($sql, $iddm, $id);
+}
+
+function get_iddm($id)
+{
+    $sql = "SELECT iddm FROM sanpham WHERE id=?";
+    return pdo_query_value($sql, $id);
 }
 
 function showsp($dssp)
@@ -71,10 +81,9 @@ function showsp($dssp)
         } else {
             $best = '';
         }
-        $link = "index.php?pg=sanphamchitiet&idpro=" . $id;
         $html_dssp .= '<div class="box25 mr15">
                             ' . $best . '
-                            <a href="' . $link . '">
+                            <a href="index.php?pg=sanphamchitiet&id=' . $id . '">
                                 <img src="layout/images/' . $img . '" alt="">
                             </a>
                             <span class="price">' . $price . ' đ</span>
@@ -85,10 +94,16 @@ function showsp($dssp)
                                 <input type="hidden" name="soluong" value="1">
                                 <button type="submit" name="addcart">Đặt hàng</button>
                             </form>
+                            
                         </div>';
     }
     return $html_dssp;
 }
+
+// function hang_hoa_select_by_id($ma_hh){
+//     $sql = "SELECT * FROM hang_hoa WHERE ma_hh=?";
+//     return pdo_query_one($sql, $ma_hh);
+// }
 
 // function hang_hoa_exist($ma_hh){
 //     $sql = "SELECT count(*) FROM hang_hoa WHERE ma_hh=?";
