@@ -38,9 +38,10 @@ $html_cart = viewcart();
             <div class="total">
                 <h3>Tổng thanh toán: <?= $thanhtoan ?></h3>
             </div>
-            <button>
-                Tiếp tục đặt hàng
-            </button>
+
+            <a href="index.php?pg=donhang">
+                <button type="">Tiếp tục đặt hàng</button>
+            </a>
         </div>
 
 

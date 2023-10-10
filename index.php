@@ -68,7 +68,8 @@ if (!isset($_GET['pg'])) {
                 $img = $_POST["img"];
                 $price = $_POST["price"];
                 $soluong = $_POST["soluong"];
-                $sp = array("name" => $name, "img" => $img, "price" => $price, "soluong" => $soluong);
+                $thanhtien = (int)$soluong * (int)$price;
+                $sp = array("idpro" => $idpro, "name" => $name, "img" => $img, "price" => $price, "soluong" => $soluong, "thanhtien" => $thanhtien);
                 array_push($_SESSION["giohang"], $sp);
                 // echo var_dump($_SESSION["giohang"]);
                 header('location: index.php?pg=viewcart');
@@ -174,6 +175,40 @@ if (!isset($_GET['pg'])) {
             include "view/gioithieu.php";
             break;
 
+        case 'donhang':
+            if (isset($_POST['donhang'])) {
+                $nguoidat_ten = $_POST['hoten'];
+                $nguoidat_diachi = $_POST['diachi'];
+                $nguoidat_email = $_POST['email'];
+                $nguoidat_tel = $_POST['dienthoai'];
+                $nguoinhan_ten = $_POST['hoten_nguoinhan'];
+                $nguoinhan_tel = $_POST['diachi_nguoinhan'];
+                $nguoinhan_dienthoai = $_POST['dienthoai_nguoinhan'];
+                $pttt = $_POST['pttt'];
+
+                // tao don hang
+                $idbill = bill_insert_id($madh, $iduser, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $nguoinhan_tel, $total, $ship, $voucher, $tongthanhtoan, $pttt);
+                $madh = "Zshop" . $iduser . date("His-dmY");
+                $total = get_tongdonhang();
+                $ship = 0;
+                $voucher = $_SESSION['giatrivoucher'];
+                $tongthanhtoan = ($total - $voucher) + $ship;
+
+                // insert new user
+                $iduser = user_insert_id($username, $password, $hoten, $diachi, $email, $dienthoai);
+                $username = "guest" . "-" . rand(1, 999);
+                $password = "1234";
+
+                // insert gioi hang tu session vao tabel cart 
+                foreach ($_SESSION['giohang'] as $sp) {
+                    extract($sp);
+                    cart_insert($idbill, $idpro, $price, $name, $img, $soluong, $thanhtien);
+                }
+                include "view/donhang_confirm.php";
+            }
+            include "view/donhang.php";
+            break;
+            // 42:53
         default:
 
             include "view/home.php";

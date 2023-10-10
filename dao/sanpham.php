@@ -88,6 +88,7 @@ function showsp($dssp)
                             </a>
                             <span class="price">' . $price . ' đ</span>
                             <form action="index.php?pg=addcart" method="post">
+                                <input type="hidden" name="idpro" value="' . $id . '">
                                 <input type="hidden" name="name" value="' . $name . '">
                                 <input type="hidden" name="img" value="' . $img . '">
                                 <input type="hidden" name="price" value="' . $price . '">
