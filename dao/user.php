@@ -9,7 +9,7 @@ function user_insert($username, $password, $email)
 
 function user_insert_id($username, $password, $ten, $diachi, $email, $dienthoai)
 {
-    $sql = "INSERT INTO user( ten, username, password, email) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO user(username, password, ten, diachi, email, dienthoai) VALUES (?, ?, ?, ?, ?, ?)";
     return pdo_execute_id($sql, $username, $password, $ten, $diachi, $email, $dienthoai);
 }
 

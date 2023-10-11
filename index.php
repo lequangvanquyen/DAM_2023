@@ -213,9 +213,9 @@ if (!isset($_GET['pg'])) {
                 }
                 include "view/donhang_confirm.php";
             }
+            // include "view/donhang_confirm.php";
             include "view/donhang.php";
             break;
-            // 42:53
         default:
 
             include "view/home.php";
