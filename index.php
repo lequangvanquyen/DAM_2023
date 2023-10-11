@@ -10,6 +10,7 @@ include "dao/user.php";
 include "dao/danhmuc.php";
 include "dao/sanpham.php";
 include "dao/giohang.php";
+include "dao/donhang.php";
 
 include "view/header.php";
 
@@ -64,6 +65,7 @@ if (!isset($_GET['pg'])) {
             break;
         case 'addcart':
             if (isset($_POST["addcart"])) {
+                $idpro = $_POST["idpro"];
                 $name = $_POST["name"];
                 $img = $_POST["img"];
                 $price = $_POST["price"];
@@ -177,32 +179,37 @@ if (!isset($_GET['pg'])) {
 
         case 'donhang':
             if (isset($_POST['donhang'])) {
-                $nguoidat_ten = $_POST['hoten'];
-                $nguoidat_diachi = $_POST['diachi'];
-                $nguoidat_email = $_POST['email'];
-                $nguoidat_tel = $_POST['dienthoai'];
+                $hoten = $_POST['hoten'];
+                $diachi = $_POST['diachi'];
+                $email = $_POST['email'];
+                $dienthoai = $_POST['dienthoai'];
                 $nguoinhan_ten = $_POST['hoten_nguoinhan'];
-                $nguoinhan_tel = $_POST['diachi_nguoinhan'];
-                $nguoinhan_dienthoai = $_POST['dienthoai_nguoinhan'];
+                $nguoinhan_diachi = $_POST['diachi_nguoinhan'];
+                $nguoinhan_tel = $_POST['dienthoai_nguoinhan'];
                 $pttt = $_POST['pttt'];
 
+                // insert new user
+                $username = "guest" . "-" . rand(1, 999);
+                $password = "1234";
+                $iduser = user_insert_id($username, $password, $hoten, $diachi, $email, $dienthoai);
+
                 // tao don hang
-                $idbill = bill_insert_id($madh, $iduser, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $nguoinhan_tel, $total, $ship, $voucher, $tongthanhtoan, $pttt);
                 $madh = "Zshop" . $iduser . date("His-dmY");
                 $total = get_tongdonhang();
                 $ship = 0;
-                $voucher = $_SESSION['giatrivoucher'];
-                $tongthanhtoan = ($total - $voucher) + $ship;
+                if (isset($_SESSION['giatrivoucher'])) {
+                    $voucher = $_SESSION['giatrivoucher'];
+                } else {
+                    $voucher = 0;
+                }
 
-                // insert new user
-                $iduser = user_insert_id($username, $password, $hoten, $diachi, $email, $dienthoai);
-                $username = "guest" . "-" . rand(1, 999);
-                $password = "1234";
+                $tongthanhtoan = ((int)$total - (int)$voucher) + (int)$ship;
+                $idbill = bill_insert_id($madh, $iduser, $hoten, $email, $dienthoai, $diachi, $nguoinhan_ten, $nguoinhan_diachi, $nguoinhan_tel, $total, $ship, $voucher, $tongthanhtoan, $pttt);
 
                 // insert gioi hang tu session vao tabel cart 
                 foreach ($_SESSION['giohang'] as $sp) {
                     extract($sp);
-                    cart_insert($idbill, $idpro, $price, $name, $img, $soluong, $thanhtien);
+                    cart_insert($idpro, $price, $name, $img, $soluong, $thanhtien, $idbill);
                 }
                 include "view/donhang_confirm.php";
             }

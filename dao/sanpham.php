@@ -93,7 +93,7 @@ function showsp($dssp)
                                 <input type="hidden" name="img" value="' . $img . '">
                                 <input type="hidden" name="price" value="' . $price . '">
                                 <input type="hidden" name="soluong" value="1">
-                                <button type="submit" name="addcart">Đặt hàng</button>
+                                <button type="submit" name="addcart" style="cursor:pointer">Đặt hàng</button>
                             </form>
                             
                         </div>';

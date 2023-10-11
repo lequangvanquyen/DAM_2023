@@ -40,7 +40,7 @@ $html_cart = viewcart();
             </div>
 
             <a href="index.php?pg=donhang">
-                <button type="">Tiếp tục đặt hàng</button>
+                <button type="submit" style="cursor:pointer">Tiếp tục đặt hàng</button>
             </a>
         </div>
 
