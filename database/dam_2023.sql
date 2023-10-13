@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 10, 2023 lúc 03:02 AM
+-- Thời gian đã tạo: Th10 13, 2023 lúc 02:42 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bill` (
   `id` int(9) NOT NULL,
-  `madh` varchar(20) NOT NULL,
+  `madh` varchar(50) NOT NULL,
   `iduser` int(6) NOT NULL,
   `nguoidat_ten` varchar(50) NOT NULL,
   `nguoidat_email` varchar(50) NOT NULL,
-  `nguoidat_tel` varchar(20) NOT NULL,
+  `nguoidat_tel` varchar(20) DEFAULT NULL,
   `nguoidat_diachi` varchar(100) NOT NULL,
   `nguoinhan_ten` varchar(50) DEFAULT NULL,
   `nguoinhan_diachi` varchar(100) DEFAULT NULL,
@@ -60,6 +60,42 @@ CREATE TABLE `cart` (
   `soluong` int(3) NOT NULL,
   `thanhtien` int(6) NOT NULL,
   `idbill` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`id`, `idpro`, `price`, `name`, `img`, `soluong`, `thanhtien`, `idbill`) VALUES
+(1, 7, 16000, 'Cà phê sữa đá', 'sp6.webp', 1, 16000, 24),
+(2, 7, 16000, 'Cà phê sữa đá', 'sp6.webp', 1, 16000, 25),
+(3, 4, 12000, 'Cà phê đen', 'sp4.webp', 1, 12000, 25),
+(4, 7, 16000, 'Cà phê sữa đá', 'sp6.webp', 1, 16000, 26),
+(5, 4, 12000, 'Cà phê đen', 'sp4.webp', 1, 12000, 26),
+(6, 7, 16000, 'Cà phê sữa đá', 'sp6.webp', 1, 16000, 27),
+(7, 7, 16000, 'Cà phê sữa đá', 'sp6.webp', 1, 16000, 28),
+(8, 7, 16000, 'Cà phê sữa đá', 'sp6.webp', 1, 16000, 29),
+(9, 8, 25000, 'Lâu lắc', 'sp7.webp', 1, 25000, 29),
+(10, 4, 12000, 'Cà phê đen', 'sp4.webp', 1, 12000, 30),
+(11, 4, 12000, 'Cà phê đen', 'sp4.webp', 1, 12000, 31),
+(12, 4, 12000, 'Cà phê đen', 'sp4.webp', 1, 12000, 32),
+(13, 4, 12000, 'Cà phê đen', 'sp4.webp', 1, 12000, 33),
+(14, 8, 25000, 'Lâu lắc', 'sp7.webp', 1, 25000, 34);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `ten` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `noidung` text NOT NULL,
+  `ngaycomment` datetime NOT NULL,
+  `idpro` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -136,8 +172,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `ten`, `diachi`, `email`, `dienthoai`, `role`) VALUES
-(1, 'lequangvanquyen', 'vanquyenst1', 'Văn Quyến', 'Liên Chiểu, Đà Nẵng', 'lequangvanquyen@gmail.com', '012345678', 1),
-(6, 'haha', '123', 'haha', 'hihi', 'haha@gmail.com', '0123456789', 0);
+(1, 'Mèo', '123', 'Lê Quang Văn Quyến', 'Thôn Sen Thượng 1, Sen Thủy, Lệ Thủy, Quảng Bình', 'lequangvanquyen@gmail.com', '0813840506', 1),
+(41, 'guest-592', '1234', '', '', '', '', 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -154,7 +190,17 @@ ALTER TABLE `bill`
 -- Chỉ mục cho bảng `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_cart_bill` (`idbill`),
+  ADD KEY `idpro` (`idpro`);
+
+--
+-- Chỉ mục cho bảng `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idpro` (`idpro`),
+  ADD KEY `iduser` (`iduser`);
 
 --
 -- Chỉ mục cho bảng `danhmuc`
@@ -183,13 +229,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT cho bảng `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc`
@@ -207,7 +259,7 @@ ALTER TABLE `sanpham`
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -220,10 +272,24 @@ ALTER TABLE `bill`
   ADD CONSTRAINT `fk_bill_user` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
 
 --
+-- Các ràng buộc cho bảng `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`idpro`) REFERENCES `sanpham` (`id`),
+  ADD CONSTRAINT `fk_cart_bill` FOREIGN KEY (`idbill`) REFERENCES `bill` (`id`);
+
+--
+-- Các ràng buộc cho bảng `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`idpro`) REFERENCES `sanpham` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+
+--
 -- Các ràng buộc cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  ADD CONSTRAINT `fk_sanpham_dm` FOREIGN KEY (`iddm`) REFERENCES `danhmuc` (`id`);
+  ADD CONSTRAINT `fk_dm_sp` FOREIGN KEY (`iddm`) REFERENCES `danhmuc` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
