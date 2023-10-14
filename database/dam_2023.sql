@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 13, 2023 lúc 02:42 PM
+-- Thời gian đã tạo: Th10 14, 2023 lúc 04:48 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.0.28
+-- Phiên bản PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -269,21 +269,21 @@ ALTER TABLE `user`
 -- Các ràng buộc cho bảng `bill`
 --
 ALTER TABLE `bill`
-  ADD CONSTRAINT `fk_bill_user` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `fk_bill_user` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `fk_cart_bill` FOREIGN KEY (`id`) REFERENCES `cart` (`idbill`);
 
 --
 -- Các ràng buộc cho bảng `cart`
 --
 ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`idpro`) REFERENCES `sanpham` (`id`),
-  ADD CONSTRAINT `fk_cart_bill` FOREIGN KEY (`idbill`) REFERENCES `bill` (`id`);
+  ADD CONSTRAINT `fk_sanpham_cart` FOREIGN KEY (`idpro`) REFERENCES `sanpham` (`id`);
 
 --
 -- Các ràng buộc cho bảng `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`idpro`) REFERENCES `sanpham` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_cm_sp` FOREIGN KEY (`idpro`) REFERENCES `sanpham` (`id`),
+  ADD CONSTRAINT `fk_cm_user` FOREIGN KEY (`iduser`) REFERENCES `user` (`id`);
 
 --
 -- Các ràng buộc cho bảng `sanpham`
